@@ -31,18 +31,24 @@ class ArcadeLearningEnvironment < Formula
     depends_on "zlib-ng-compat"
   end
 
-  pypi_packages exclude_packages: "numpy",
-                extra_packages:   "gymnasium"
+  pypi_packages package_name:     "ale-py[vector]",
+                exclude_packages: %w[numpy opencv-python]
 
   # See https://github.com/Farama-Foundation/Arcade-Learning-Environment/blob/master/scripts/download_unpack_roms.sh
   resource "roms" do
     url "https://gist.githubusercontent.com/jjshoots/61b22aefce4456920ba99f2c36906eda/raw/00046ac3403768bfe45857610a3d333b8e35e026/Roms.tar.gz.b64"
+    version "00046ac3403768bfe45857610a3d333b8e35e026"
     sha256 "02ca777c16476a72fa36680a2ba78f24c3ac31b2155033549a5f37a0653117de"
+
+    livecheck do
+      url "https://raw.githubusercontent.com/Farama-Foundation/Arcade-Learning-Environment/refs/tags/v#{LATEST_VERSION}/scripts/download_unpack_roms.sh"
+      regex(%r{/jjshoots/61b22aefce4456920ba99f2c36906eda/raw/(\h+)/Roms\.t}i)
+    end
   end
 
   resource "cloudpickle" do
-    url "https://files.pythonhosted.org/packages/52/39/069100b84d7418bc358d81669d5748efb14b9cceacd2f9c75f550424132f/cloudpickle-3.1.1.tar.gz"
-    sha256 "b216fa8ae4019d5482a8ac3c95d8f6346115d8835911fd4aefd1a445e4242c64"
+    url "https://files.pythonhosted.org/packages/27/fb/576f067976d320f5f0114a8d9fa1215425441bb35627b1993e5afd8111e5/cloudpickle-3.1.2.tar.gz"
+    sha256 "7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414"
   end
 
   resource "farama-notifications" do
@@ -51,8 +57,8 @@ class ArcadeLearningEnvironment < Formula
   end
 
   resource "gymnasium" do
-    url "https://files.pythonhosted.org/packages/b3/de/b923d09654df8f8ee29a3cc7ec7829ac057efd0d969cc3da0c8a7b219d59/gymnasium-1.2.1.tar.gz"
-    sha256 "4e6480273528523a90b3db99befb6111b13f15fa0866de88c4b675770495b66c"
+    url "https://files.pythonhosted.org/packages/76/59/653a9417d98ed3e29ef9734ba52c3495f6c6823b8d5c0c75369f25111708/gymnasium-1.2.3.tar.gz"
+    sha256 "2b2cb5b5fbbbdf3afb9f38ca952cc48aa6aa3e26561400d940747fda3ad42509"
   end
 
   resource "typing-extensions" do
