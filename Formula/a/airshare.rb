@@ -6,7 +6,7 @@ class Airshare < Formula
   url "https://files.pythonhosted.org/packages/cb/a2/d59c18cd6a143bf860c29acb70552b7351fd7e0f56213be86b624601106b/Airshare-0.1.6.tar.gz"
   sha256 "138976933bcf2c0bc99f18901242544919e9fafe43735b4f83b19d4ae5964be7"
   license "MIT"
-  revision 22
+  revision 23
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_tahoe:   "dbf2a1077eb3da41bfe73de325595ffdd80c2cd7a4aca68c0cb1aa179d007cd1"
@@ -28,8 +28,8 @@ class Airshare < Formula
   end
 
   resource "aiohttp" do
-    url "https://files.pythonhosted.org/packages/50/42/32cf8e7704ceb4481406eb87161349abb46a57fee3f008ba9cb610968646/aiohttp-3.13.3.tar.gz"
-    sha256 "a949eee43d3782f2daae4f4a2819b2cb9b0c5d3b7f7a927067cc84dafdbb9f88"
+    url "https://files.pythonhosted.org/packages/77/9a/152096d4808df8e4268befa55fba462f440f14beab85e8ad9bf990516918/aiohttp-3.13.5.tar.gz"
+    sha256 "9d98cc980ecc96be6eb4c1994ce35d28d8b1f5e5208a23b421187d1209dbb7d1"
   end
 
   resource "aiosignal" do
@@ -98,8 +98,8 @@ class Airshare < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
-    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
+    url "https://files.pythonhosted.org/packages/5f/a4/98b9c7c6428a668bf7e42ebb7c79d576a1c3c1e3ae2d47e674b468388871/requests-2.33.1.tar.gz"
+    sha256 "18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517"
   end
 
   resource "requests-toolbelt" do
@@ -141,7 +141,7 @@ class Airshare < Formula
   test do
     port = free_port
     pid = spawn bin/"airshare", "-p", port.to_s, "homebrew-demo", "-t", "Hello Homebrew!"
-    sleep 40
+    sleep 60
     output = shell_output("#{bin}/airshare -p #{port} homebrew-demo")
     assert_equal "Received: Hello Homebrew!\n", output.lines.last
     Process.kill("TERM", pid)
